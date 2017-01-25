@@ -72,10 +72,10 @@ function drawBasic() {
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal
-        // btn.onclick = function() {
-            modal.style.display = "block";
-        // }
+        // ON CLICK LOGIC HERE
+        modal.style.display = "block";
+        document.getElementById('modalHeaderText').innerHTML= "Run " + chart.getSelection()[0].row;
+        document.getElementById('modalBodyText').innerHTML='<a target="_blank" href="https://stormrunner-load.saas.hpe.com/run-overview/' + chart.getSelection()[0].row + '/dashboard/?TENANTID=911414929&projectId=1">https://stormrunner-load.saas.hpe.com/run-overview/' + chart.getSelection()[0].row + '/dashboard/?TENANTID=911414929&projectId=1</a>'
 
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
