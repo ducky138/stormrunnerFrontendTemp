@@ -22,7 +22,7 @@ function addBannerButtonsToPage(arr) {
 function createBannerButton(banner) {
   var btn = document.createElement("BUTTON");
   btn.innerHTML = banner;
-  btn.setAttribute('class', 'btn btn-secondary divider');
+  btn.setAttribute('class', 'btn btn-secondary btn-lg bannerbuttons data-toggle="button" aria-pressed="false"');
   btn.setAttribute('banner', banner);
   btn.setAttribute('onclick', "hideNonBannerButtons(\"" + banner + "\"); addTestNameButtonsToPage(\'" + banner + "\');");
   console.log(btn);
@@ -33,21 +33,15 @@ function addTestNameButtonsToPage(banner){
   var testnames = getTestNames();
   html = '';
     for (i = 0; i < testnames.length; i++) {
-      html += "<button class=\"btn btn-secondary divider\" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\">" + banner + testnames[i] + "</button>"
+      // removed divider class
+      html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\">" + banner + testnames[i] + "</button>"
     }
   console.log("TESTBUTTONS" + html);
   document.getElementById('testButtons').innerHTML+= html;
 }
 
 function hideNonBannerButtons(banner){
-  // console.log(document.getElementsByTagName("div"));
-  // console.log(document.getElementByAttribute("testname"));
-
-  console.log(document.getElementById("testButtons").getAttribute("testname"));
-
-
-  // if (document.getElementsByTagName("testname").getAttribute("class"))
-  // document.getElementById('testButtons').style.display = 'none';
+  document.getElementById('testButtons').innerHTML = "";
 }
 
 
