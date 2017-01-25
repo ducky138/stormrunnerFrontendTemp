@@ -14,7 +14,11 @@ function getTestNames(banner){
 }
 
 //@TODO MICHELLE PROVIDES
-// function get
+function getScriptNames(testname){
+  // GET TESTNAMES BASED ON BANNER PROVIDED
+  var scriptnames = ["script1", "script2", "script3", "script4", "script5", "script6", "script7"];
+  return scriptnames;
+}
 
 function addBannerButtonsToPage(arr) {
   for (i = 0; i < arr.length; i++) {
@@ -27,20 +31,32 @@ function createBannerButton(banner) {
   btn.innerHTML = banner;
   btn.setAttribute('class', 'btn btn-secondary btn-lg bannerbuttons data-toggle="button" aria-pressed="false"');
   btn.setAttribute('banner', banner);
-  btn.setAttribute('onclick', "hideById(\'testButtons\'); addTestNameButtonsToPage(\'" + banner + "\');");
+  btn.setAttribute('onclick', "hideById(\'scriptButtons\'); addTestNameButtonsToPage(\'" + banner + "\');"); //hide scriptButtons here because when we click on a new test we don't want the old ones showing
   console.log(btn);
   document.body.appendChild(btn);
 }
 
 function addTestNameButtonsToPage(banner){
-  var testnames = getTestNames();
+  var testnames = getTestNames(banner);
   html = '';
     for (i = 0; i < testnames.length; i++) {
       // removed divider class
-      html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\">" + banner + testnames[i] + "</button>"
+      html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" onclick=\"addScriptButtonsToPage(\'" + testnames[i] + "\')\">" + banner + testnames[i] + "</button>"
     }
   console.log("TESTBUTTONS" + html);
-  document.getElementById('testButtons').innerHTML+= html;
+  document.getElementById('testButtons').innerHTML= html;
+}
+
+function addScriptButtonsToPage(testname){
+  var scriptnames = getScriptNames(testname);
+  html = '';
+    for (i = 0; i < scriptnames.length; i++) {
+      // removed divider class
+      // html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" scriptname=\"" + scriptnames[i] + "\">" + banner + scriptnames[i] + "</button>"
+      html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" scriptname=\"" +  scriptnames[i] + "\">" + testname + scriptnames[i] +"</button>"
+    }
+  console.log("SCRIPTBUTTONS" + html);
+  document.getElementById('scriptButtons').innerHTML= html;
 }
 
 function hideById(id){
