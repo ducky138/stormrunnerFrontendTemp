@@ -62,7 +62,7 @@ function drawBasic() {
       function selectHandler(e) {
 
         // console.log(chart.getSelection()[0]);
-        console.log(chart.getSelection()[0].row);
+        // console.log(chart.getSelection()[0].row);
 
 // -------------------------------------------------------------------------//
 
@@ -80,12 +80,14 @@ function drawBasic() {
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
+            chart.draw(data, options);
         }
 
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+                chart.draw(data, options);
             }
         }
 
