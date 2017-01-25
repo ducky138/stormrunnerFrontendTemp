@@ -13,6 +13,9 @@ function getTestNames(banner){
   return testnames;
 }
 
+//@TODO MICHELLE PROVIDES
+// function get
+
 function addBannerButtonsToPage(arr) {
   for (i = 0; i < arr.length; i++) {
     createBannerButton(arr[i]);
@@ -24,7 +27,7 @@ function createBannerButton(banner) {
   btn.innerHTML = banner;
   btn.setAttribute('class', 'btn btn-secondary btn-lg bannerbuttons data-toggle="button" aria-pressed="false"');
   btn.setAttribute('banner', banner);
-  btn.setAttribute('onclick', "hideNonBannerButtons(\"" + banner + "\"); addTestNameButtonsToPage(\'" + banner + "\');");
+  btn.setAttribute('onclick', "hideById(\'testButtons\'); addTestNameButtonsToPage(\'" + banner + "\');");
   console.log(btn);
   document.body.appendChild(btn);
 }
@@ -40,8 +43,8 @@ function addTestNameButtonsToPage(banner){
   document.getElementById('testButtons').innerHTML+= html;
 }
 
-function hideNonBannerButtons(banner){
-  document.getElementById('testButtons').innerHTML = "";
+function hideById(id){
+  document.getElementById(id).innerHTML = "";
 }
 
 

@@ -1,0 +1,8 @@
+drawBasic() will take in the json that michelle will PROVIDES
+
+have json be like
+
+{
+columns:[Transaction_1(atrt), Transaction_2(90th), ...]
+coordinates:[[0, 0, 0],[1, 10, 5],[2, 23, 15],...]
+}
