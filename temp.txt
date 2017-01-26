@@ -10,3 +10,8 @@ coordinates:[[0, 0, 0],[1, 10, 5],[2, 23, 15],...]
 
 
 curl -X GET --header 'Accept: application/json' 'https://stormrunner-load.saas.hpe.com/v1/projects/1/load-tests?TENANTID=911414929'
+
+
+
+
+GRAPH NEEDS TO BE PLOTTED FIRST FOR SOME REASON

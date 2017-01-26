@@ -1,5 +1,5 @@
 google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawBasic);
+// google.charts.setOnLoadCallback(drawBasic);
 
 function drawBasic() {
 
