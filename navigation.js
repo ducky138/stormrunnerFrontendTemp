@@ -40,8 +40,12 @@ function addTestNameButtonsToPage(banner){
   var testnames = getTestNames(banner);
   html = '';
     for (i = 0; i < testnames.length; i++) {
-      // removed divider class
-      html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" onclick=\"addScriptButtonsToPage(\'" + testnames[i] + "\')\">" + banner + testnames[i] + "</button>"
+      // html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" onclick=\"addScriptButtonsToPage(\'" + testnames[i] + "\')\">" + banner + testnames[i] + "</button>"
+      classAttributeContent = 'class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\"\"';
+      bannerAttributeContent = 'banner=\"' + banner + '\"';
+      testnameAttributeContent = 'testname=\"' + banner + '_test' + '\"'; // THIS IS JUST A TEST VALUE. CHANGE IT TO REAL VALUE LATER
+      onClickAttributeContent = 'onclick=\"addScriptButtonsToPage(\'' + testnames[i] + '\')\"';
+      html += '<button' + ' ' + classAttributeContent + ' ' + bannerAttributeContent + ' ' + testnameAttributeContent + ' ' + onClickAttributeContent + '>' + banner + testnames[i] + '</button>';
     }
   console.log("TESTBUTTONS" + html);
   document.getElementById('testButtons').innerHTML= html;
@@ -51,9 +55,12 @@ function addScriptButtonsToPage(testname){
   var scriptnames = getScriptNames(testname);
   html = '';
     for (i = 0; i < scriptnames.length; i++) {
-      // removed divider class
       // html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" scriptname=\"" + scriptnames[i] + "\">" + banner + scriptnames[i] + "</button>"
-      html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" scriptname=\"" +  scriptnames[i] + "\">" + testname + scriptnames[i] +"</button>"
+      classAttributeContent = 'class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\"\"';
+      scriptNameAttributeContent = 'scriptname=\"' +  scriptnames[i] + '\"';
+      testnameAttributeContent = 'testname=\"' + testname + '\"';
+      onClickAttributeContent = ''; // add method where coordinates will be plotted on graph based on parameters (testname, scriptname)
+      html += '<button' + ' ' + classAttributeContent + ' ' + scriptNameAttributeContent + ' ' + testnameAttributeContent + ' ' + onClickAttributeContent +  '>' + testname + scriptnames[i] + '</button>';
     }
   console.log("SCRIPTBUTTONS" + html);
   document.getElementById('scriptButtons').innerHTML= html;
