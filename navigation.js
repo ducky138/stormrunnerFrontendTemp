@@ -1,4 +1,7 @@
 var app = angular.module('stormrunnerreporter', []); // injecting stuff into ng-app (stormrunnerreporter)
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.load("visualization", "1", {packages:["corechart"]});
+
 
 //@TODO MICHELLE PROVIDES
 function getBanners(){
@@ -20,10 +23,30 @@ function getScriptNames(testname){
   return scriptnames;
 }
 
-function addBannerButtonsToPage(arr) {
-  for (i = 0; i < arr.length; i++) {
-    createBannerButton(arr[i]);
-  }
+//@TODO MICHELLE PROVIDES
+function getChartData(){
+
+  var obj = JSON.parse(json);
+  var columns = obj.columns;
+  var coordinates = obj.coordinates;
+
+  console.log(columns);
+  console.log(coordinates[0]);
+
+  drawBasic();
+
+
+  // alert(obj.count);
+}
+
+function getChartColumns(json){
+  var obj = JSON.parse(json);
+  return columns;
+}
+
+function getChartCoordinates(json){
+  var obj = JSON.parse(json);
+  return columns;
 }
 
 function createBannerButton(banner) {
@@ -34,6 +57,12 @@ function createBannerButton(banner) {
   btn.setAttribute('onclick', "hideById(\'scriptButtons\'); addTestNameButtonsToPage(\'" + banner + "\');"); //hide scriptButtons here because when we click on a new test we don't want the old ones showing
   console.log(btn);
   document.body.appendChild(btn);
+}
+
+function addBannerButtonsToPage(arr) {
+  for (i = 0; i < arr.length; i++) {
+    createBannerButton(arr[i]);
+  }
 }
 
 function addTestNameButtonsToPage(banner){
