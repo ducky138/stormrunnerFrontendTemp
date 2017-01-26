@@ -18,7 +18,7 @@
   padding-left: 50px;
 }
 
-
+/*TO KEEP CHART FROM OVERLAPPING STUFF*/
 .chartstyles {
   float: left;
   clear: left;
