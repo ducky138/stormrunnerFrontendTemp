@@ -23,17 +23,46 @@ function getScriptNames(testname){
   return scriptnames;
 }
 
-//@TODO MICHELLE PROVIDES
-function getChartData(){
+function getChartColumns(json){
+  var obj = JSON.parse(json);
+  return columns;
+}
 
+function getChartCoordinates(json){
+  var obj = JSON.parse(json);
+  return columns;
+}
+
+function getTestNameOfButton(button) {
+  return button.getAttribute("testname");
+}
+
+function getScriptNameOfButton(button) {
+  return button.getAttribute("scriptname");
+}
+
+//@TODO MICHELLE PROVIDES
+/**
+ * returns JSON of 1) array of columns and 2) array of coordinates
+ */
+function getChartData(testname, scriptname) {
   var json = '{"columns" : ["Transaction_1(atrt)", "Transaction_1(90th)", "Transaction_2(atrt)", "Transaction_2(90th)"], "coordinates": [[601, 1.511, 1.661, 1.611, 1.761], [602, 1.513, 1.677, 1.613, 1.777], [603, 1.513, 1.679, 1.613, 1.779], [604, 1.531, 1.687, 1.631, 1.787], [605, 1.542, 1.701, 1.642, 1.801], [606, 1.574, 1.708, 1.674, 1.808], [607, 1.581, 1.776, 1.681, 1.876], [608, 1.611, 1.782, 1.711, 1.882], [609, 1.615, 1.783, 1.715, 1.883], [610, 1.642, 1.798, 1.742, 1.898]]}';
+  console.log(testname+scriptname);
+  return json;
+}
+
+function implementChart(testname, scriptname){
+
+  var json = getChartData(testname, scriptname);
+
+  // var json = '{"columns" : ["Transaction_1(atrt)", "Transaction_1(90th)", "Transaction_2(atrt)", "Transaction_2(90th)"], "coordinates": [[601, 1.511, 1.661, 1.611, 1.761], [602, 1.513, 1.677, 1.613, 1.777], [603, 1.513, 1.679, 1.613, 1.779], [604, 1.531, 1.687, 1.631, 1.787], [605, 1.542, 1.701, 1.642, 1.801], [606, 1.574, 1.708, 1.674, 1.808], [607, 1.581, 1.776, 1.681, 1.876], [608, 1.611, 1.782, 1.711, 1.882], [609, 1.615, 1.783, 1.715, 1.883], [610, 1.642, 1.798, 1.742, 1.898]]}';
 
   var obj = JSON.parse(json);
   var columns = obj.columns;
   var coordinates = obj.coordinates;
 
-  console.log(columns);
-  console.log(coordinates[0]);
+  // console.log(columns);
+  // console.log(coordinates[0]);
 
   drawChart(columns, coordinates);
 
@@ -100,31 +129,13 @@ function drawChart(columns, coordinates){
             chart.draw(data, options);
         }
     }
-
   }
-
 }
 
 
 
 
 
-
-
-
-
-
-
-
-function getChartColumns(json){
-  var obj = JSON.parse(json);
-  return columns;
-}
-
-function getChartCoordinates(json){
-  var obj = JSON.parse(json);
-  return columns;
-}
 
 function createBannerButton(banner) {
   var btn = document.createElement("BUTTON");
@@ -165,7 +176,7 @@ function addScriptButtonsToPage(testname){
       classAttributeContent = 'class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\"\"';
       scriptNameAttributeContent = 'scriptname=\"' +  scriptnames[i] + '\"';
       testnameAttributeContent = 'testname=\"' + testname + '\"';
-      onClickAttributeContent = ''; // add method where coordinates will be plotted on graph based on parameters (testname, scriptname)
+      onClickAttributeContent = 'onclick=\"implementChart(getTestNameOfButton(this), getScriptNameOfButton(this))\"'; // add method where coordinates will be plotted on graph based on parameters (testname, scriptname)
       html += '<button' + ' ' + classAttributeContent + ' ' + scriptNameAttributeContent + ' ' + testnameAttributeContent + ' ' + onClickAttributeContent +  '>' + testname + scriptnames[i] + '</button>';
     }
   console.log("SCRIPTBUTTONS" + html);
@@ -193,15 +204,6 @@ function hideById(id){
 
 
 
-// function createTestNameButton(banner) {
-//   var btn = document.createElement("BUTTON");
-//   btn.innerHTML = banner;
-//   btn.setAttribute('class', 'btn btn-secondary divider');
-//   btn.setAttribute('banner', banner);
-//   btn.setAttribute('onclick', banner);
-//   console.log(btn);
-//   document.body.appendChild(btn);
-// }
 
 
 
@@ -211,35 +213,9 @@ function hideById(id){
 
 
 
-// app.controller('BannerCtrl', [
-// '$scope'
-// function($scope){
-//   $scope.posts = posts.posts;
-//   $scope.addPost = function(){
-//     if(!$scope.title || $scope.title === '') { return; }
+
+
+
+
+
 //
-//     $scope.posts.push({
-//       title: $scope.title,
-//       link: $scope.link,
-//       upvotes: 0,
-//       comments: [
-//         {author: 'Joe', body: 'Cool post!', upvotes: 0},
-//         {author: 'Bob', body: 'Great idea but everything is wrong!', upvotes: 0}
-//       ]
-//     });
-//     $scope.title = '';
-//     $scope.link = '';
-//   };
-//
-//   $scope.incrementUpvotes = function(post) {
-//     post.upvotes += 1;
-//   };
-//
-// }]);
-//
-//
-// app.controller('TestNameCtrl', [
-// '$scope',
-// function($scope){
-//
-// }]);
