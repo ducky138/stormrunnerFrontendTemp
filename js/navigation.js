@@ -1,5 +1,5 @@
-var app = angular.module('stormrunnerreporter', []); // injecting stuff into ng-app (stormrunnerreporter)
-// google.charts.load('current', {packages: ['corechart', 'line']});
+// var app = angular.module('stormrunnerreporter', []); // injecting stuff into ng-app (stormrunnerreporter)
+google.charts.load('current', {packages: ['corechart', 'line']});
 // google.charts.load("visualization", "1", {packages:["corechart"]});
 
 
