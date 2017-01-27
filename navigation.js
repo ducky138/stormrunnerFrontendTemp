@@ -68,6 +68,56 @@ function implementChart(testname, scriptname){
 
 }
 
+function createBannerButton(banner) {
+  var btn = document.createElement("BUTTON");
+  btn.innerHTML = banner;
+  btn.setAttribute('class', 'btn btn-secondary btn-lg bannerbuttons data-toggle="button" aria-pressed="false"');
+  btn.setAttribute('banner', banner);
+  btn.setAttribute('onclick', "hideById(\'scriptButtons\'); hideById(\'chart_div\'); addTestNameButtonsToPage(\'" + banner + "\');"); //hide scriptButtons here because when we click on a new test we don't want the old ones showing
+  console.log(btn);
+  document.body.appendChild(btn);
+}
+
+function addBannerButtonsToPage(arr) {
+  for (i = 0; i < arr.length; i++) {
+    createBannerButton(arr[i]);
+  }
+}
+
+function addTestNameButtonsToPage(banner){
+  var testnames = getTestNames(banner);
+  html = '';
+    for (i = 0; i < testnames.length; i++) {
+      // html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" onclick=\"addScriptButtonsToPage(\'" + testnames[i] + "\')\">" + banner + testnames[i] + "</button>"
+      classAttributeContent = 'class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\"\"';
+      bannerAttributeContent = 'banner=\"' + banner + '\"';
+      testnameAttributeContent = 'testname=\"' + banner + '_test' + '\"'; // THIS IS JUST A TEST VALUE. CHANGE IT TO REAL VALUE LATER
+      onClickAttributeContent = 'onclick=\" hideById(\'chart_div\'); addScriptButtonsToPage(\'' + testnames[i] + '\')\"';
+      html += '<button' + ' ' + classAttributeContent + ' ' + bannerAttributeContent + ' ' + testnameAttributeContent + ' ' + onClickAttributeContent + '>' + banner + testnames[i] + '</button>';
+    }
+  console.log("TESTBUTTONS" + html);
+  document.getElementById('testButtons').innerHTML= html;
+}
+
+function addScriptButtonsToPage(testname){
+  var scriptnames = getScriptNames(testname);
+  html = '';
+    for (i = 0; i < scriptnames.length; i++) {
+      // html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" scriptname=\"" + scriptnames[i] + "\">" + banner + scriptnames[i] + "</button>"
+      classAttributeContent = 'class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\"\"';
+      scriptNameAttributeContent = 'scriptname=\"' +  scriptnames[i] + '\"';
+      testnameAttributeContent = 'testname=\"' + testname + '\"';
+      onClickAttributeContent = 'onclick=\"implementChart(getTestNameOfButton(this), getScriptNameOfButton(this))\"'; // add method where coordinates will be plotted on graph based on parameters (testname, scriptname)
+      html += '<button' + ' ' + classAttributeContent + ' ' + scriptNameAttributeContent + ' ' + testnameAttributeContent + ' ' + onClickAttributeContent +  '>' + testname + scriptnames[i] + '</button>';
+    }
+  console.log("SCRIPTBUTTONS" + html);
+  document.getElementById('scriptButtons').innerHTML= html;
+}
+
+function hideById(id){
+  document.getElementById(id).innerHTML = "";
+}
+
 
 function drawChart(columns, coordinates){
 
@@ -133,59 +183,6 @@ function drawChart(columns, coordinates){
 }
 
 
-
-
-
-
-function createBannerButton(banner) {
-  var btn = document.createElement("BUTTON");
-  btn.innerHTML = banner;
-  btn.setAttribute('class', 'btn btn-secondary btn-lg bannerbuttons data-toggle="button" aria-pressed="false"');
-  btn.setAttribute('banner', banner);
-  btn.setAttribute('onclick', "hideById(\'scriptButtons\'); addTestNameButtonsToPage(\'" + banner + "\');"); //hide scriptButtons here because when we click on a new test we don't want the old ones showing
-  console.log(btn);
-  document.body.appendChild(btn);
-}
-
-function addBannerButtonsToPage(arr) {
-  for (i = 0; i < arr.length; i++) {
-    createBannerButton(arr[i]);
-  }
-}
-
-function addTestNameButtonsToPage(banner){
-  var testnames = getTestNames(banner);
-  html = '';
-    for (i = 0; i < testnames.length; i++) {
-      // html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" onclick=\"addScriptButtonsToPage(\'" + testnames[i] + "\')\">" + banner + testnames[i] + "</button>"
-      classAttributeContent = 'class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\"\"';
-      bannerAttributeContent = 'banner=\"' + banner + '\"';
-      testnameAttributeContent = 'testname=\"' + banner + '_test' + '\"'; // THIS IS JUST A TEST VALUE. CHANGE IT TO REAL VALUE LATER
-      onClickAttributeContent = 'onclick=\"addScriptButtonsToPage(\'' + testnames[i] + '\')\"';
-      html += '<button' + ' ' + classAttributeContent + ' ' + bannerAttributeContent + ' ' + testnameAttributeContent + ' ' + onClickAttributeContent + '>' + banner + testnames[i] + '</button>';
-    }
-  console.log("TESTBUTTONS" + html);
-  document.getElementById('testButtons').innerHTML= html;
-}
-
-function addScriptButtonsToPage(testname){
-  var scriptnames = getScriptNames(testname);
-  html = '';
-    for (i = 0; i < scriptnames.length; i++) {
-      // html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" scriptname=\"" + scriptnames[i] + "\">" + banner + scriptnames[i] + "</button>"
-      classAttributeContent = 'class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\"\"';
-      scriptNameAttributeContent = 'scriptname=\"' +  scriptnames[i] + '\"';
-      testnameAttributeContent = 'testname=\"' + testname + '\"';
-      onClickAttributeContent = 'onclick=\"implementChart(getTestNameOfButton(this), getScriptNameOfButton(this))\"'; // add method where coordinates will be plotted on graph based on parameters (testname, scriptname)
-      html += '<button' + ' ' + classAttributeContent + ' ' + scriptNameAttributeContent + ' ' + testnameAttributeContent + ' ' + onClickAttributeContent +  '>' + testname + scriptnames[i] + '</button>';
-    }
-  console.log("SCRIPTBUTTONS" + html);
-  document.getElementById('scriptButtons').innerHTML= html;
-}
-
-function hideById(id){
-  document.getElementById(id).innerHTML = "";
-}
 
 
 
