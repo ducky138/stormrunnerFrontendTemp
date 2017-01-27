@@ -61,11 +61,7 @@ function implementChart(testname, scriptname){
   var columns = obj.columns;
   var coordinates = obj.coordinates;
 
-  // console.log(columns);
-  // console.log(coordinates[0]);
-
   drawChart(columns, coordinates);
-
 }
 
 function createBannerButton(banner) {
