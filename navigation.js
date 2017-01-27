@@ -80,8 +80,6 @@ function drawChart(columns, coordinates){
     // ON CLICK LOGIC HERE
     modal.style.display = "block";
 
-    // console.log(chart.getSelection()[0]);
-
     selectedRowIndex = chart.getSelection()[0].row;
     selectedColumnIndex = chart.getSelection()[0].column;
     // console.log(data.getValue(selectedRowIndex, 0));
