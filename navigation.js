@@ -91,7 +91,7 @@ function addTestNameButtonsToPage(banner){
       // html += "<button class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\" \" banner=\"" + banner + "\" testname=\"" + banner + "_test" + "\" onclick=\"addScriptButtonsToPage(\'" + testnames[i] + "\')\">" + banner + testnames[i] + "</button>"
       classAttributeContent = 'class=\"btn btn-secondary btn-lg data-toggle=\"button\" aria-pressed=\"false\"\"';
       bannerAttributeContent = 'banner=\"' + banner + '\"';
-      testnameAttributeContent = 'testname=\"' + banner + '_test' + '\"'; // THIS IS JUST A TEST VALUE. CHANGE IT TO REAL VALUE LATER
+      testnameAttributeContent = 'testname=\"' + testnames[i] + '\"';
       onClickAttributeContent = 'onclick=\" hideById(\'chart_div\'); addScriptButtonsToPage(\'' + testnames[i] + '\')\"';
       html += '<button' + ' ' + classAttributeContent + ' ' + bannerAttributeContent + ' ' + testnameAttributeContent + ' ' + onClickAttributeContent + '>' + banner + testnames[i] + '</button>';
     }
