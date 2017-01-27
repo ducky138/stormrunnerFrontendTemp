@@ -84,13 +84,10 @@ function drawChart(columns, coordinates){
 
     selectedRowIndex = chart.getSelection()[0].row;
     selectedColumnIndex = chart.getSelection()[0].column;
+    // console.log(data.getValue(selectedRowIndex, 0));
 
-    console.log('hihihi ' + data.getRowProperties(selectedRowIndex).row);
-
-    console.log(data.getValue(selectedRowIndex, selectedColumnIndex));
-
-    document.getElementById('modalHeaderText').innerHTML= "Run " + chart.getSelection()[0].row;
-    document.getElementById('modalBodyText').innerHTML='<a target="_blank" href="https://stormrunner-load.saas.hpe.com/run-overview/' + chart.getSelection()[0].row + '/dashboard/?TENANTID=911414929&projectId=1">https://stormrunner-load.saas.hpe.com/run-overview/' + chart.getSelection()[0].row + '/dashboard/?TENANTID=911414929&projectId=1</a>'
+    document.getElementById('modalHeaderText').innerHTML= "Run " + data.getValue(selectedRowIndex, 0);
+    document.getElementById('modalBodyText').innerHTML='<a target="_blank" href="https://stormrunner-load.saas.hpe.com/run-overview/' + data.getValue(selectedRowIndex, 0) + '/dashboard/?TENANTID=911414929&projectId=1">https://stormrunner-load.saas.hpe.com/run-overview/' + data.getValue(selectedRowIndex, 0) + '/dashboard/?TENANTID=911414929&projectId=1</a>'
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
